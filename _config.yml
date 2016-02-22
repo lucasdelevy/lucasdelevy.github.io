@@ -6,16 +6,19 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: levy's website
+name: Lucas de Levy Oliveira
+email: lucasdelevy@gmail.com
+original_url: "http://lucasdelevy.com"
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Welcome to my page!
+  I'm currently moving from Amazon AWS + Wordpress, so it's not fully setup yet. :-)
+  You can check the original website at <a href="http://lucasdelevy.com">lucasdelevy.com</a>
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "" # the base hostname & protocol for your site
+facebook_username: lucasdelevy
+github_username:  lucasdelevy
+linkedin_username: lucasdelevy
 
 # Build settings
 markdown: kramdown
