@@ -14,7 +14,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Welcome to my page!
   I'm currently moving from Amazon AWS + Wordpress, so it's not fully setup yet. :-)
   You can check the original website at <a href="http://lucasdelevy.com">lucasdelevy.com</a>
-baseurl: "/welcome" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "lucasdelevy.com" # the base hostname & protocol for your site
 facebook_username: lucasdelevy
 github_username:  lucasdelevy

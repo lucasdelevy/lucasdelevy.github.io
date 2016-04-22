@@ -1,7 +1,7 @@
 ---
 layout: page
 title: welcome!
-permalink: /welcome/
+permalink: /
 ---
 
 ようこそ！　Hello and welcome to my page! :-)
