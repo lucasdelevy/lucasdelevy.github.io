@@ -6,7 +6,7 @@ permalink: /welcome/
 
 ようこそ！　Hello and welcome to my page! :-)
 
-I’ll take this space to talk a little more [about me]() and the [projects]() I have been working on.　Enjoy!
+I’ll take this space to talk a little more [about me](/who-am-i) and the [projects](/what-have-you-done) I have been working on.　Enjoy!
 
 In the meantime, why not watching a cockroach being controlled remotely?
 It is a thing.
