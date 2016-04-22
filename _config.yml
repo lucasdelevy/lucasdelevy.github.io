@@ -8,7 +8,7 @@
 # Site settings
 title: levy @ 阪大
 name: Lucas de Levy Oliveira
-email: lucasdelevy@gmail.com
+email: lucasdelevy@neuron.eei.eng.osaka-u.ac.jp
 original_url: "http://lucasdelevy.com"
 description: > # this means to ignore newlines until "baseurl:"
   Welcome to my page!
@@ -22,3 +22,6 @@ linkedin_username: lucasdelevy
 
 # Build settings
 markdown: kramdown
+
+gems:
+- jekyll-email-protect
