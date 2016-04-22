@@ -1,6 +1,6 @@
 ---
 layout: page
-title: home
+title: welcome!
 permalink: /
 ---
 
@@ -11,4 +11,5 @@ I’ll take this space to talk a little more [about me](/who-am-i) and the [proj
 In the meantime, why not watching a cockroach being controlled remotely?
 It is a thing.
 
-![alt text](https://www.youtube.com/watch?v=g0M2KTbc_a8)
+
+[![RoboRoach](https://img.youtube.com/vi/g0M2KTbc_a8/0.jpg)](https://www.youtube.com/watch?v=g0M2KTbc_a8)
