@@ -1,4 +1,6 @@
 ---
+permalink: /posts/
+title: posts
 layout: default
 ---
 
