@@ -11,7 +11,8 @@ If you wish to learn more about any of them, please <a href="mailto:{{ site.emai
 <hr>
 
 <h1>Encoding and Decoding of Neural Signals for Peripheral Interfaces</h1>
-<b>Where</b>: Undergraduate Thesis at University of Brasilia<br>
+<b>What</b>: Undergraduate Thesis<br>
+<b>Where</b>: University of Brasilia<br>
 <b>Date</b>: December, 2015<br>
 <b>Authors</b>: Lucas de Levy Oliveira<br>
 <b>Download</b>: [PDF](/resources/trabalho_final_lucas_de_levy.pdf)<br>
@@ -22,6 +23,7 @@ This work consists on the development of two experimental setups for the impleme
 <hr>
 
 <h1>Experiments on Lower Limb FES Control for Cycling</h1>
+<b>What</b>: Conference paper<br>
 <b>Where</b>: Simpósio Brasileiro de Automação Inteligente 2015<br>
 <b>Date</b>: October, 2015<br>
 <b>Authors</b>: Antônio Bó, Lucas Fonseca, Stephany Rodrigues, Ana de Sousa, Lucas de Levy Oliveira and George Brindeiro<br>
@@ -32,6 +34,7 @@ Cycling aided by Functional Electrical Stimulation (FES) for individuals with ne
 <hr>
 
 <h1>Studies on the use of Functional Electrical Stimulation on the lower limb for cycling</h1>
+<b>What</b>: Conference paper<br>
 <b>Where</b>: XXIV Brazilian Conference on Biomedical Engineering<br>
 <b>Date</b>: August, 2014<br>
 <b>Authors</b>: Lucas Fonseca, Lucas de Levy Oliveira, Mileny Oliveira, Miguel Eduardo Paredes, Clarissa Santos-Couto-Paz Paulo Eugênio, João Durigan and Antônio Bó<br>
@@ -42,6 +45,7 @@ This paper describes a study of Functional Electrical Stimulation applied to cyc
 <hr>
 
 <h1>An above-knee prosthesis with magnetorheological variable-damping</h1>
+<b>What</b>: Conference paper<br>
 <b>Where</b>: 5th IEEE RAS/EMBS International Conference on Biomedical Robotics and Biomechatronics<br>
 <b>Date</b>: August, 2013<br>
 <b>Authors</b>: Claudia Ochoa, Thiago Rocha, Lucas de Levy Oliveira, Miguel Eduardo Paredes, Rafael Lima, Antônio Bó and Geovany Borges<br>
