@@ -16,7 +16,7 @@
       <div class="trigger">
         {% for my_page in site.pages %}
           {% if my_page.title %}
-            {% if my_page.title != 'welcome!' %}
+            {% if my_page.title != 'welcome!' and my_page.title != '404: page not found :{' %}
             <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
             {% endif %}
           {% endif %}
