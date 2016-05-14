@@ -33,16 +33,16 @@ img.welcome {
 
 <img class="welcome" src="/images/osaka-aquarium.jpg">
 
+<p>
 ようこそ！　Hello and welcome to my page! :-)
-
-I’ll take this space to talk a little more [**about me**](/who-am-i) and the [**projects**](/what-have-you-done) I have been working on.　Enjoy!
-
+<br>
+I’ll take this space to talk a little more <b><a href="/who-are-you">about me</a></b> and the <b><a href="/what-have-you-done">projects</a></b> I have been working on.　Enjoy!
+<br>
 In the meantime, why not watching a cockroach being controlled remotely?
 It is a thing.
+</p>
 
 <!-- YouTube responsive video code taken from: http://avexdesigns.com/responsive-youtube-embed/ -->
-
-<br>
 <div class="video-container">
          <iframe src="http://www.youtube.com/embed/g0M2KTbc_a8" frameborder="0" width="560" height="315"></iframe>
 </div>
