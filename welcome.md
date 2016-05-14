@@ -15,7 +15,7 @@ img.welcome {
 }
 </style>
 
-<img class="welcome" src="images/osaka-aquarium.jpg">
+<img class="welcome" src="/images/osaka-aquarium.jpg">
 
 ようこそ！　Hello and welcome to my page! :-)
 
