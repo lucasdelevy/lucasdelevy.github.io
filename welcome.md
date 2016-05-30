@@ -11,7 +11,7 @@ img.welcome {
     height: 100%;
     width: 100%;
     border-radius: 0px;
-    box-shadow: 1px 1px 10px color(21,114,184);
+    box-shadow: 5px 3px 5px gray;
 }
 
 .video-container {
