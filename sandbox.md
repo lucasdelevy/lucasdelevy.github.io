@@ -7,7 +7,7 @@ permalink: /has-matheus-portela-failed-already/
 
 <head>
     <!-- <center><h1 class="post-title">SANDBOX</h1></center> -->
-    <center><h1 class="post-title">Has Matheus Portela failed #100DaysOfCode yet?</h1></center>
+    <center><h1 class="post-title">Has Matheus Portela failed #100DaysOfCode?</h1></center>
 <script
 src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
 </script>
