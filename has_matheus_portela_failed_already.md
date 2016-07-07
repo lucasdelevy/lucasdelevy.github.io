@@ -6,8 +6,9 @@ permalink: /has-matheus-portela-failed-already/
 <html>
 
 <head>
-    <!-- <center><h1 class="post-title">SANDBOX</h1></center> -->
-    <center><h1 class="post-title">Has Matheus Portela failed #100DaysOfCode?</h1></center>
+<center>
+    <h1 class="post-title">Has Matheus Portela failed #100DaysOfCode?</h1>
+</center>
 <script
 src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
 </script>
@@ -70,14 +71,20 @@ $(document).ready(function()
             if (fail_flag)
             {
                 document.getElementById("div_result").innerHTML = "YES";
+                document.getElementById("img_result").onload = function ()
+                {
+                    document.getElementById("img_result").width = "300";
+                };
                 document.getElementById("img_result").src = "/images/tcholas_fail.png";
-                document.getElementById("img_result").width = "300";
             }
             else
             {
                 document.getElementById("div_result").innerHTML = "NOT YET";
+                document.getElementById("img_result").onload = function ()
+                {
+                    document.getElementById("img_result").width = "400";
+                };
                 document.getElementById("img_result").src = "/images/tcholas_success.png";
-                document.getElementById("img_result").width = "400";
             }
 
             // Debugging code
