@@ -70,19 +70,19 @@ $(document).ready(function()
 
             if (fail_flag)
             {
-                document.getElementById("div_result").innerHTML = "YES";
                 document.getElementById("img_result").onload = function ()
                 {
                     document.getElementById("img_result").width = "300";
+                    document.getElementById("div_result").innerHTML = "YES";
                 };
                 document.getElementById("img_result").src = "/images/tcholas_fail.png";
             }
             else
             {
-                document.getElementById("div_result").innerHTML = "NOT YET";
                 document.getElementById("img_result").onload = function ()
                 {
                     document.getElementById("img_result").width = "400";
+                    document.getElementById("div_result").innerHTML = "NOT YET";
                 };
                 document.getElementById("img_result").src = "/images/tcholas_success.png";
             }
