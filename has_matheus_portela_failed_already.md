@@ -34,28 +34,58 @@ $(document).ready(function()
     var ajax_data_obj = JSON.parse(ajax_data_string);
     var commit_dates_str = [];
     var commit_dates = [];
+    var repos_names = [];
 
-    // Acquiring dates from commits
-    $.getJSON("https://api.github.com/repos/matheusportela/enigma-machine/commits", ajax_data_obj)
-        .done(function(data)
+    // Acquiring names from repos
+    $.getJSON("https://api.github.com/users/matheusportela/repos")
+        .done(function(repos_data)
         {
-            console.log("commits acquired successfully!")
+            console.log("repo names acquired successfully!")
 
             do
             {
-                var date_to_add_str = data[iterator].commit.author.date.substring(0,10);
-                if ($.inArray(date_to_add_str, commit_dates_str) == -1)
-                {
-                    var date_to_add = new Date(date_to_add_str.substring(0,4),
-                                                date_to_add_str.substring(5,7)-1,
-                                                date_to_add_str.substring(8,10));
-                    commit_dates_str.push(date_to_add_str);
-                    commit_dates.push(date_to_add);
-                }
+                console.log(repos_data[iterator].name);
+                repos_names.push(repos_data[iterator].name);
 
                 iterator++;
-            } while (data[iterator] != undefined)
+            } while(repos_data[iterator])
 
+            do
+            {
+                var repo_to_get = repos_names.pop();
+                if (repo_to_get == undefined)
+                    continue;
+                console.log("acquiring commits from " + repo_to_get + "...");
+
+                // Acquiring dates from commits
+               $.getJSON("https://api.github.com/repos/matheusportela/" + repo_to_get + "/commits", ajax_data_obj)
+                .done(function(commits_data)
+                {
+                    console.log("commits acquired successfully!")
+
+                    iterator = 0;
+                    do
+                    {
+                        var date_to_add_str = commits_data[iterator].commit.author.date.substring(0,10);
+                        if ($.inArray(date_to_add_str, commit_dates_str) == -1)
+                        {
+                            var date_to_add = new Date(date_to_add_str.substring(0,4),
+                                                        date_to_add_str.substring(5,7)-1,
+                                                        date_to_add_str.substring(8,10));
+                            commit_dates_str.push(date_to_add_str);
+                            commit_dates.push(date_to_add);
+                        }
+
+                        iterator++;
+                    } while(commits_data[iterator] != undefined)
+                });
+
+                console.log("sleeping...");
+                sleep(10);
+                console.log("done");
+            } while(repo_to_get != undefined)
+
+            console.log("finding intervals...");
             // Finding intervals
             var fail_flag = 0;
             for (iterator = 1; iterator < commit_dates.length; iterator++)
@@ -68,6 +98,7 @@ $(document).ready(function()
                     fail_flag = 1;
             }
 
+            console.log("changing html...");
             if (fail_flag)
             {
                 document.getElementById("img_result").onload = function ()
@@ -86,14 +117,6 @@ $(document).ready(function()
                 };
                 document.getElementById("img_result").src = "/images/tcholas_success.png";
             }
-
-            // Debugging code
-            console.log("listing...");
-
-            while (commit_dates.length > 0)
-                console.log(commit_dates.length + ") " + commit_dates.pop());
-
-            console.log("done listing!");
         });
 });
 </script>
@@ -106,6 +129,10 @@ $(document).ready(function()
 
     <h1><div id="div_result"></div></h1>
     <img src = "/images/loading.gif" id = "img_result" width = "100">
+
+    <br>
+    <br>
+    <hr>
 
 </center>
 
