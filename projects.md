@@ -50,7 +50,7 @@ This paper describes a study of Functional Electrical Stimulation applied to cyc
 <h1>An above-knee prosthesis with magnetorheological variable-damping</h1>
 <b>What</b>: Conference paper<br>
 <b>Where</b>: 5th IEEE RAS/EMBS International Conference on Biomedical Robotics and Biomechatronics<br>
-<b>Date</b>: August, 2013<br>
+<b>Date</b>: August, 2014<br>
 <b>Authors</b>: Claudia Ochoa, Thiago Rocha, Lucas de Levy Oliveira, Miguel Eduardo Paredes, Rafael Lima, Antônio Bó and Geovany Borges<br>
 <br>
 <p align="justify">
