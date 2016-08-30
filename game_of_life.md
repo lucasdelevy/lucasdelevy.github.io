@@ -7,25 +7,75 @@ permalink: /game-of-life/
 
 <head>
 <style>
-.grid { margin:1em auto; border-collapse:collapse }
-
-.grid td
+/* Intro div*/
+.intro_class
 {
-    /*cursor:pointer;*/
-    width:4px; height:4px;
-    border:2px solid #ccc;
+    text-align: center;
 }
 
-.grid td.clicked
+body
 {
-    background-color: gray;
+    background-color: #FFFFFF;
 }
 
+/* Game div */
+:root
+{
+    --dead-color: #FFD8D8;
+    --alive-color: #FF8686;
+    --border-thick: 2px;
+}
+.game_class
+{
+    align: center;
+}
+
+/* Round grid */
+.round_grid
+{
+    margin: 1em auto;
+    border-collapse: separate;
+    border-spacing: 1px;
+}
+.round_grid td
+{
+    background-clip: padding-box;
+    border-radius: 10px;
+    background-color: var(--dead-color);
+    color: var(--dead-color);
+    border: var(--border-thick) solid var(--dead-color);
+}
+.round_grid td.clicked
+{
+    border-color: var(--alive-color);
+    background-color: var(--alive-color);
+}
+
+/* Square grid */
+.square_grid {
+    margin:1em auto;
+    border-collapse:collapse;
+    border-spacing: 1px;
+}
+.square_grid td
+{
+    background-clip: padding-box;
+    width: 3px;
+    height: 3px;
+    border: var(--border-thick) solid var(--dead-color);
+}
+.square_grid td.clicked
+{
+    background-color: var(--alive-color);
+}
+
+/* Buttons div*/
 .buttons_class
 {
     text-align: center;
 }
 
+/* Credits div*/
 .credits_class
 {
     font-size: 80%;
@@ -41,13 +91,14 @@ permalink: /game-of-life/
 
 <script>
 // Grid functions
-var nrows = 20;
-var ncols = 80;
+var nrows = 80;
+var ncols = 100;
 var grid = clickableGrid(nrows,ncols,
     function(el,row,col,i)
     {
         el.className = el.className == 'clicked' ? 'unclicked' : 'clicked'
     });
+grid.className = 'square_grid'
 
 var mouse_down = false;
 function clickableGrid(rows, cols, callback)
@@ -215,6 +266,11 @@ function stopGame()
     clearInterval(interval);
 }
 
+function changeGridStyle()
+{
+    grid.className = grid.className == 'square_grid' ? 'round_grid' : 'square_grid';
+}
+
 // Window renderizing
 window.onload = function()
 {
@@ -237,11 +293,16 @@ window.onload = function()
 
 <body>
 
+<div id="div_intro" class="intro_class">
+A simple demo of Conway's Game of Life.
+</div>
+
 <div id="div_game" class="game_class"> </div>
 
 <div id="div_buttons" class="buttons_class">
     <button id="start_button" onclick="startGame()">START</button>
     <button id="stop_button" onclick="stopGame()">STOP</button>
+    <button id="style_button" onclick="changeGridStyle()">CSS</button>
     <br>
     <button onclick="randomState()">RANDOM</button>
     <button onclick="clearState()">CLEAR</button>
@@ -250,7 +311,9 @@ window.onload = function()
 
 <div id="div_credits" class="credits_class">
 <br>
-(Grid based on this <a href="http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser">StackOverflow thread</a>.)
+(Grid based on <a href="http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser">this StackOverflow thread</a>.)
+<br>
+(Rules are from <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">the Wikipedia article</a>.)
 </div>
 
 </body>
