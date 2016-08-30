@@ -12,7 +12,7 @@ permalink: /game-of-life/
 .grid td
 {
     /*cursor:pointer;*/
-    width:20px; height:20px;
+    width:4px; height:4px;
     border:2px solid #ccc;
 }
 
@@ -26,30 +26,36 @@ permalink: /game-of-life/
     text-align: center;
 }
 
+.credits_class
+{
+    font-size: 80%;
+    text-align: center;
+    font-style: italic;
+}
+
 </style>
 
 <center>
-    <h1 class="post-title">GAME OF LIFE</h1>
+    <h1 class="post-title"><b>GAME OF LIFE</b></h1>
 </center>
 
 <script>
 // Grid functions
-var nrows = 10;
-var ncols = 30;
+var nrows = 20;
+var ncols = 80;
 var grid = clickableGrid(nrows,ncols,
     function(el,row,col,i)
     {
-        if (el.className == 'clicked')
-            el.className = 'unclicked';
-        else
-            el.className = 'clicked'
+        el.className = el.className == 'clicked' ? 'unclicked' : 'clicked'
     });
 
+var mouse_down = false;
 function clickableGrid(rows, cols, callback)
 {
-    var i = 0;
     var grid = document.createElement('table');
     grid.className = 'grid';
+
+    var i = 0;
     for (var r = 0; r < rows; ++r){
         var tr = grid.appendChild(document.createElement('tr'));
         for (var c = 0; c < cols; ++c)
@@ -63,6 +69,31 @@ function clickableGrid(rows, cols, callback)
                     return function()
                     {
                         callback(el,r,c,i);
+                    }
+                })(cell,r,c,i),false);
+            cell.addEventListener('mousedown', (
+                function(el,r,c,i)
+                {
+                    return function()
+                    {
+                        mouse_down = true;
+                    }
+                })(cell,r,c,i),false);
+            cell.addEventListener('mouseup', (
+                function(el,r,c,i)
+                {
+                    return function()
+                    {
+                        mouse_down = false;
+                    }
+                })(cell,r,c,i),false);
+            cell.addEventListener('mouseenter',(
+                function(el,r,c,i)
+                {
+                    return function()
+                    {
+                        if(mouse_down)
+                            callback(el,r,c,i);
                     }
                 })(cell,r,c,i),false);
         }
@@ -169,15 +200,22 @@ function playSimulation()
     }
 }
 
-var start_button    = document.createElement('button')
-var stop_button     = document.createElement('button')
+function startGame()
+{
+    var i = 0;
+    start_button.disabled = true;
+    stop_button.disabled = false;
+    interval = setInterval(playSimulation, 100)
+};
 
-var start_text  = document.createTextNode('START')
-var stop_text   = document.createTextNode('STOP')
+function stopGame()
+{
+    start_button.disabled = false;
+    stop_button.disabled = true;
+    clearInterval(interval);
+}
 
-start_button.appendChild(start_text)
-stop_button.appendChild(stop_text)
-
+// Window renderizing
 window.onload = function()
 {
     // Game division
@@ -186,28 +224,12 @@ window.onload = function()
 
     // Button division
     var div_buttons = document.getElementById('div_buttons')
+    var start_button = document.getElementById('start_button')
+    var stop_button = document.getElementById('stop_button')
     var interval = null;
 
     start_button.disabled = false;
     stop_button.disabled = true;
-
-    start_button.onclick = function()
-    {
-        var i = 0;
-        start_button.disabled = true;
-        stop_button.disabled = false;
-        interval = setInterval(playSimulation, 100)
-    };
-
-    stop_button.onclick = function()
-    {
-        start_button.disabled = false;
-        stop_button.disabled = true;
-        clearInterval(interval);
-    }
-
-    div_buttons.appendChild(start_button);
-    div_buttons.appendChild(stop_button);
 }
 
 </script>
@@ -218,11 +240,18 @@ window.onload = function()
 <div id="div_game" class="game_class"> </div>
 
 <div id="div_buttons" class="buttons_class">
+    <button id="start_button" onclick="startGame()">START</button>
+    <button id="stop_button" onclick="stopGame()">STOP</button>
+    <br>
     <button onclick="randomState()">RANDOM</button>
     <button onclick="clearState()">CLEAR</button>
+    <br>
 </div>
 
-Inspired on: http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser
+<div id="div_credits" class="credits_class">
+<br>
+(Grid based on this <a href="http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser">StackOverflow thread</a>.)
+</div>
 
 </body>
 
