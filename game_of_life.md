@@ -98,7 +98,13 @@ var grid = clickableGrid(nrows,ncols,
     {
         el.className = el.className == 'clicked' ? 'unclicked' : 'clicked'
     });
+var old_grid = clickableGrid(nrows,ncols,
+    function(el,row,col,i)
+    {
+        el.className = el.className == 'clicked' ? 'unclicked' : 'clicked'
+    });
 grid.className = 'square_grid'
+old_grid.className = 'square_grid'
 
 var mouse_down = false;
 function clickableGrid(rows, cols, callback)
@@ -152,9 +158,9 @@ function clickableGrid(rows, cols, callback)
     return grid;
 }
 
-function getNeighborsStatistics(index_i, index_j)
+function getLivingNeighbors(this_grid, index_i, index_j)
 {
-    var stats = [0,0];
+    var living = 0;
 
     for(var i = -1; i < 2; i++)
     {
@@ -163,7 +169,7 @@ function getNeighborsStatistics(index_i, index_j)
             if (i == 0 && j == 0)
                 continue;
 
-            these_rows = old_grid.rows[index_i+i]
+            these_rows = this_grid.rows[index_i+i]
 
             if(these_rows == undefined)
                 continue;
@@ -172,15 +178,13 @@ function getNeighborsStatistics(index_i, index_j)
 
             if(cell == undefined)
                 continue;
-
-            if(cell.className == 'unclicked')
-                stats[0]++;
-            else if(cell.className == 'clicked')
-                stats[1]++;
+            
+            if(cell.className == 'clicked')
+                living++;
         }
     }
 
-    return stats
+    return living
 }
 
 // Game functions
@@ -218,9 +222,10 @@ function clearState()
     }
 }
 
+var iteraction = 0;
 function playSimulation()
 {
-    old_grid = grid;
+    old_grid.innerHTML = grid.innerHTML;
 
     for(var i = 0; i < nrows; i++)
     {
@@ -228,27 +233,29 @@ function playSimulation()
         {
             game_cell = grid.rows[i].cells[j];
 
-            // Check how many neighbors are dead (stats[0]) or alive (stats[1])
-            stats = getNeighborsStatistics(i,j);
-            
+            // Check how many neighbors are alive
+            living = getLivingNeighbors(old_grid, i, j);
+
             // GAME OF LIFE
             // From: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
             // Obs.: Unclicked aka dead, clicked aka alive
             // 1. Any live cell with fewer than two live neighbours dies, as if caused by under-population.
             if(game_cell.className == 'clicked')
             {
-                if(stats[1] < 2)
+                if(living < 2)
                     game_cell.className = 'unclicked';
             // 2. Any live cell with more than three live neighbours dies, as if by over-population.
-                if(stats[1] > 3)
+                if(living > 3)
                     game_cell.className = 'unclicked'
             // 3. Any live cell with two or three live neighbours lives on to the next generation.
             }
             // 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-            else if(stats[1] == 3)
+            if(game_cell.className == 'unclicked' && living == 3)
                 game_cell.className = 'clicked';
         }
     }
+
+    iteraction++;
 }
 
 function startGame()
