@@ -69,22 +69,27 @@ body
     background-color: var(--alive-color);
 }
 
-/* Buttons div*/
-#button-dropdown .dropdown
+/* Settings div*/
+.settings_div
 {
-    float: left;
-    width: 50%;
+    position: relative;
     overflow: hidden;
+    width: all;
 }
-
-.buttons-class
+.action-buttons-div
 {
-    text-align: center;
+    text-align: right;
     float: right;
     width: 50%;
-    overflow: hidden;
+    display: inline;
 }
-
+.pattern-buttons-div
+{
+    text-align: left;
+    float: left;
+    width: 50%;
+    align-content: flex-start;
+}
 .nice-buttons
 {
     background-color: #3E8181;
@@ -93,66 +98,32 @@ body
     font-size: 16px;
     border: none;
     cursor: pointer;
+    display: auto;
 }
 .nice-buttons:hover, .nice-buttons:focus
 {
-    cursor: pointer;
     background-color: #216868;
 }
-
-/* Slider div */
-.slider-class
+.nice-buttons:disabled
 {
-    vertical-align: middle;
+    background-color: #97C2C2;
+    cursor: default;
+}
+.buttons-hidden-view
+{
+    position: relative;
+    text-align: center;
+    align-content: left;
+    display: none;
 }
 
 /* Credits div*/
 .credits-class
 {
+    position: relative;
     font-size: 80%;
     text-align: center;
     font-style: italic;
-}
-
-/* Dropdown Button */
-.dropbtn-buttons
-{
-    background-color: #3E8181;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn-buttons:hover, .dropbtn-buttons:focus
-{
-    background-color: #216868;
-    visibility: hidden;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown-buttons
-{
-    position: absolute;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content-buttons
-{
-    display: none;
-    position: relative;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show
-{
-    display: block;
 }
 </style>
 
@@ -607,31 +578,28 @@ function acornState()
 
 /* When the user clicks on the button, 
   toggle between hiding and showing the dropdown content */
-function openSimpleButtonDropDown()
+function showSimplePatterns()
 {
-    document.getElementById("dropdown_button_div_simple").classList.add("show");
+    document.getElementById("simple_patterns_button").style.display = 'none';
+    document.getElementById("simple_patterns_div").style.display = 'initial';
 }
 
-function openMethuselahsButtonDropDown()
+function hideSimplePatterns()
 {
-    document.getElementById("dropdown_button_div_methuselahs").classList.add("show");
+    document.getElementById("simple_patterns_button").style.display = 'initial';
+    document.getElementById("simple_patterns_div").style.display = 'none';
 }
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event)
+function showMethuselahsPatterns()
 {
-    if (!event.target.matches('.dropbtn-buttons'))
-    {
+    document.getElementById("methuselahs_patterns_button").style.display = 'none';
+    document.getElementById("methuselahs_patterns_div").style.display = 'initial';
+}
 
-      var dropdowns = document.getElementsByClassName("dropdown-content-buttons");
-      var i;
-      for (i = 0; i < dropdowns.length; i++)
-      {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show'))
-          openDropdown.classList.remove('show');
-      }
-    }
+function hideMethuselahsPatterns()
+{
+    document.getElementById("methuselahs_patterns_button").style.display = 'initial';
+    document.getElementById("methuselahs_patterns_div").style.display = 'none';
 }
 
 // Window renderizing
@@ -663,43 +631,47 @@ A simple demo of Conway's Game of Life.
 <div id="div_game" class="game-class">
 </div>
 
-<div id="button_dropdown_simple" class="dropdown-buttons">
-    <button onmouseenter="openSimpleButtonDropDown()" class="dropbtn">simple patterns</button>
-    <div id="dropdown_button_div_simple" class="dropdown-content-buttons">
-        <button class="nice-buttons" onclick="stillLifeState()">Still Life</button>
-        <button class="nice-buttons" onclick="oscillatorState()">Oscillators</button>
-        <button class="nice-buttons" onclick="spaceshipsState()">Spaceships</button>
-    </div>
-    <br>
-    <button onmouseenter="openMethuselahsButtonDropDown()" class="dropbtn">Methuselahs patterns</button>
-    <div id="dropdown_button_div_methuselahs" class="dropdown-content-buttons">
-        <button class="nice-buttons" onclick="rPentominoState()">The R-pentomino</button>
-        <button class="nice-buttons" onclick="diehardState()">Diehard</button>
-        <button class="nice-buttons" onclick="acornState()">Acorn</button>
-    </div>
-</div>
+<div class="settings_div">
+    <div id="pattern_buttons_div" class="pattern-buttons-div">
+        <div id="simple_buttons_div" class="buttons-div">
+            <button id="simple_patterns_button" onmouseenter="showSimplePatterns()" class="nice-buttons">Simple patterns</button>
 
-<div id="div_buttons" class="buttons-class">
-    <button id="start_button" onclick="startGame()">START</button>
-    <button id="stop_button" onclick="stopGame()">STOP</button>
-    <button id="step_button" onclick="stepGame()">STEP</button>
-    <br>
-    <button onclick="randomState()">RANDOM</button>
-    <button onclick="clearState()">CLEAR</button>
-    <button id="style_button" onclick="changeGridStyle()">CSS</button>
-    <br>
-    <div id="div_slider" class="slider-class">
+            <div id="simple_patterns_div" onmouseleave="hideSimplePatterns()" class="buttons-hidden-view">
+                <button class="nice-buttons" onclick="stillLifeState()">Still Life</button>
+                <button class="nice-buttons" onclick="oscillatohirState()">Oscillators</button>
+                <button class="nice-buttons" onclick="spaceshipsState()">Spaceships</button>
+            </div>
+        </div>
+        <br>
+        <div id="methuselahs_buttons_div" class="buttons-div">
+            <button id="methuselahs_patterns_button" onmouseenter="showMethuselahsPatterns()" class="nice-buttons">Methuselahs patterns</button>
+            
+            <div id="methuselahs_patterns_div" onmouseleave="hideMethuselahsPatterns()" class="buttons-hidden-view">
+                <button class="nice-buttons" onclick="rPentominoState()">The R-pentomino</button>
+                <button class="nice-buttons" onclick="diehardState()">Diehard</button>
+                <button class="nice-buttons" onclick="acornState()">Acorn</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="action_buttons_div" class="action-buttons-div">
+        <button class="nice-buttons" id="start_button" onclick="startGame()">START</button>
+        <button class="nice-buttons" id="stop_button" onclick="stopGame()">STOP</button>
+        <button class="nice-buttons" id="step_button" onclick="stepGame()">STEP</button>
+        <br>
+        <br>
+        <button class="nice-buttons" onclick="randomState()">RANDOM</button>
+        <button class="nice-buttons" onclick="clearState()">CLEAR</button>
+        <button class="nice-buttons" id="style_button" onclick="changeGridStyle()">CSS</button>
+        <br>
+        <br>
         fast <input type="range" id="sim_period_slider" value="100" max="1000" min="10" onchange="restartGame()"> slow
     </div>
 </div>
 
-<div id="div_credits" class="credits-class">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<br>
+
+<div id="credits_div" class="credits-class">
     (Grid based on <a href="http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser">this StackOverflow thread</a>.)
     <br>
     (Rules are from <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">the Wikipedia article</a>.)
