@@ -53,6 +53,12 @@ $on-laptop:        800px;
         "syntax-highlighting"
 ;
 
+// HTML
+html
+{
+    overflow-y: scroll
+}
+
 // Slider
 input[type=range] {
     /*removes default webkit styles*/
