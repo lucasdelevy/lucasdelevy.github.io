@@ -638,7 +638,7 @@ A simple demo of Conway's Game of Life.
 
             <div id="simple_patterns_div" onmouseleave="hideSimplePatterns()" class="buttons-hidden-view">
                 <button class="nice-buttons" onclick="stillLifeState()">Still Life</button>
-                <button class="nice-buttons" onclick="oscillatohirState()">Oscillators</button>
+                <button class="nice-buttons" onclick="oscillatorState()">Oscillators</button>
                 <button class="nice-buttons" onclick="spaceshipsState()">Spaceships</button>
             </div>
         </div>
@@ -665,7 +665,7 @@ A simple demo of Conway's Game of Life.
         <button class="nice-buttons" id="style_button" onclick="changeGridStyle()">CSS</button>
         <br>
         <br>
-        fast <input type="range" id="sim_period_slider" value="100" max="1000" min="10" onchange="restartGame()"> slow
+        fast <input type="range" id="sim_period_slider" value="100" max="1000" min="50" onchange="restartGame()"> slow
     </div>
 </div>
 
