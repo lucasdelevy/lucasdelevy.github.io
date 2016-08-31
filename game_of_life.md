@@ -8,7 +8,7 @@ permalink: /game-of-life/
 <head>
 <style>
 /* Intro div*/
-.intro_class
+.intro-class
 {
     text-align: center;
 }
@@ -25,19 +25,19 @@ body
     --alive-color: #FF8686;
     --border-thick: 2px;
 }
-.game_class
+.game-class
 {
     align: center;
 }
 
 /* Round grid */
-.round_grid
+.round-grid
 {
     margin: 1em auto;
     border-collapse: separate;
     border-spacing: 1px;
 }
-.round_grid td
+.round-grid td
 {
     background-clip: padding-box;
     border-radius: 10px;
@@ -45,44 +45,115 @@ body
     color: var(--dead-color);
     border: var(--border-thick) solid var(--dead-color);
 }
-.round_grid td.clicked
+.round-grid td.clicked
 {
     border-color: var(--alive-color);
     background-color: var(--alive-color);
 }
 
 /* Square grid */
-.square_grid {
+.square-grid {
     margin:1em auto;
     border-collapse:collapse;
     border-spacing: 1px;
 }
-.square_grid td
+.square-grid td
 {
     background-clip: padding-box;
     width: 3px;
     height: 3px;
     border: var(--border-thick) solid var(--dead-color);
 }
-.square_grid td.clicked
+.square-grid td.clicked
 {
     background-color: var(--alive-color);
 }
 
 /* Buttons div*/
-.buttons_class
+#button-dropdown .dropdown
+{
+    float: left;
+    width: 50%;
+    overflow: hidden;
+}
+
+.buttons-class
 {
     text-align: center;
+    float: right;
+    width: 50%;
+    overflow: hidden;
+}
+
+.nice-buttons
+{
+    background-color: #3E8181;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.nice-buttons:hover, .nice-buttons:focus
+{
+    cursor: pointer;
+    background-color: #216868;
+}
+
+/* Slider div */
+.slider-class
+{
+    vertical-align: middle;
 }
 
 /* Credits div*/
-.credits_class
+.credits-class
 {
     font-size: 80%;
     text-align: center;
     font-style: italic;
 }
 
+/* Dropdown Button */
+.dropbtn-buttons
+{
+    background-color: #3E8181;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn-buttons:hover, .dropbtn-buttons:focus
+{
+    background-color: #216868;
+    visibility: hidden;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-buttons
+{
+    position: absolute;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content-buttons
+{
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show
+{
+    display: block;
+}
 </style>
 
 <center>
@@ -103,8 +174,8 @@ var old_grid = clickableGrid(nrows,ncols,
     {
         el.className = el.className == 'clicked' ? 'unclicked' : 'clicked'
     });
-grid.className = 'square_grid'
-old_grid.className = 'square_grid'
+grid.className = 'square-grid'
+old_grid.className = 'square-grid'
 
 var mouse_down = false;
 function clickableGrid(rows, cols, callback)
@@ -188,12 +259,8 @@ function getLivingNeighbors(this_grid, index_i, index_j)
 }
 
 // Game functions
-var run_game = true;
-
 function randomState()
 {
-    console.log('RANDOM!')
-
     for(var i = 0; i < nrows; i++)
     {
         for (var j = 0; j < ncols; j++)
@@ -210,8 +277,6 @@ function randomState()
 
 function clearState()
 {
-    console.log('CLEAR!')
-
     for(var i = 0; i < nrows; i++)
     {
         for (var j = 0; j < ncols; j++)
@@ -263,8 +328,10 @@ function startGame()
     var i = 0;
     start_button.disabled = true;
     stop_button.disabled = false;
-    interval = setInterval(playSimulation, 100)
-};
+
+    var sim_period = document.getElementById("sim_period_slider").value
+    interval = setInterval(playSimulation, sim_period)
+}
 
 function stopGame()
 {
@@ -273,9 +340,298 @@ function stopGame()
     clearInterval(interval);
 }
 
+function stepGame()
+{
+    playSimulation();
+}
+
+function restartGame()
+{
+    if (start_button.disabled)
+    {
+        stopGame();
+        startGame();
+    }
+}
+
 function changeGridStyle()
 {
-    grid.className = grid.className == 'square_grid' ? 'round_grid' : 'square_grid';
+    grid.className = grid.className == 'square-grid' ? 'round-grid' : 'square-grid';
+}
+
+function stillLifeState()
+{
+    clearState();
+
+    // 4px square block
+    random_i = Math.round(Math.random()*(nrows-2))
+    random_j = Math.round(Math.random()*(ncols-2))
+
+    grid.rows[random_i].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+1].className = 'clicked';
+
+    // Beehive
+    random_i = Math.round(Math.random()*(nrows-4))
+    random_j = Math.round(Math.random()*(ncols-3))    
+
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+2].className = 'clicked';
+
+    // Loaf
+    random_i = Math.round(Math.random()*(nrows-4))
+    random_j = Math.round(Math.random()*(ncols-4))
+
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+2].className = 'clicked';
+
+    // Boat
+    random_i = Math.round(Math.random()*(nrows-4))
+    random_j = Math.round(Math.random()*(ncols-4))
+
+    grid.rows[random_i].cells[random_j].className = 'clicked';
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+}
+
+function oscillatorState()
+{
+    clearState();
+
+    // Blinker
+    random_i = Math.round(Math.random()*(nrows-3))
+    random_j = Math.round(Math.random()*(ncols-3))
+
+    grid.rows[random_i].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j].className = 'clicked';
+
+    // Toad
+    random_i = Math.round(Math.random()*(nrows-4))
+    random_j = Math.round(Math.random()*(ncols-4))    
+
+    grid.rows[random_i+1].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+2].className = 'clicked';
+
+    // Beacon
+    random_i = Math.round(Math.random()*(nrows-4))
+    random_j = Math.round(Math.random()*(ncols-4))
+
+    grid.rows[random_i].cells[random_j].className = 'clicked';
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+1].className = 'clicked';
+    
+    grid.rows[random_i+2].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+3].className = 'clicked';
+
+    // Pulsar
+    random_i = Math.round(Math.random()*(nrows-13))
+    random_j = Math.round(Math.random()*(ncols-13))
+
+    grid.rows[random_i].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i].cells[random_j+8].className = 'clicked';
+    grid.rows[random_i].cells[random_j+9].className = 'clicked';
+    grid.rows[random_i].cells[random_j+10].className = 'clicked';
+
+    grid.rows[random_i+2].cells[random_j].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j].className = 'clicked';
+    grid.rows[random_i+4].cells[random_j].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+4].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+7].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+7].className = 'clicked';
+    grid.rows[random_i+4].cells[random_j+7].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+12].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+12].className = 'clicked';
+    grid.rows[random_i+4].cells[random_j+12].className = 'clicked';
+
+    grid.rows[random_i+5].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+8].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+9].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+10].className = 'clicked';
+
+    grid.rows[random_i+7].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+8].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+9].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+10].className = 'clicked';
+
+    grid.rows[random_i+8].cells[random_j].className = 'clicked';
+    grid.rows[random_i+9].cells[random_j].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j].className = 'clicked';
+    grid.rows[random_i+8].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+9].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+8].cells[random_j+7].className = 'clicked';
+    grid.rows[random_i+9].cells[random_j+7].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j+7].className = 'clicked';
+    grid.rows[random_i+8].cells[random_j+12].className = 'clicked';
+    grid.rows[random_i+9].cells[random_j+12].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j+12].className = 'clicked';
+
+    grid.rows[random_i+12].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+12].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+12].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+12].cells[random_j+8].className = 'clicked';
+    grid.rows[random_i+12].cells[random_j+9].className = 'clicked';
+    grid.rows[random_i+12].cells[random_j+10].className = 'clicked';
+
+    // Pentadecathlon
+    random_i = Math.round(Math.random()*(nrows-16))
+    random_j = Math.round(Math.random()*(ncols-9))
+
+    grid.rows[random_i+3].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+4].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+4].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+5].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+6].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+6].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+6].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+7].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+8].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+8].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+8].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+9].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+9].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+10].cells[random_j+6].className = 'clicked';
+}
+
+function spaceshipsState()
+{
+    clearState();
+
+    // Glider
+    random_i = Math.round(Math.random()*(nrows-3))
+    random_j = Math.round(Math.random()*(ncols-3))
+
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+2].className = 'clicked';
+    
+
+    // Lightweight spaceship (LWSS)
+    random_i = Math.round(Math.random()*(nrows-4))
+    random_j = Math.round(Math.random()*(ncols-5))    
+
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j].className = 'clicked';
+    grid.rows[random_i+3].cells[random_j+3].className = 'clicked';
+}
+
+function rPentominoState()
+{
+    clearState();
+
+    random_i = Math.round(nrows/2-1)
+    random_j = Math.round(ncols/2-1)
+
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i].cells[random_j+2].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+}
+
+function diehardState()
+{
+    clearState();
+
+    random_i = Math.round(nrows/2-2)
+    random_j = Math.round(ncols/2-4)
+
+    grid.rows[random_i].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+6].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+7].className = 'clicked';
+}
+
+function acornState()
+{
+    clearState();
+
+    random_i = Math.round(nrows/2-2)
+    random_j = Math.round(ncols/2-4)
+
+    grid.rows[random_i].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+1].cells[random_j+3].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+1].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+4].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+5].className = 'clicked';
+    grid.rows[random_i+2].cells[random_j+6].className = 'clicked';
+}
+
+/* When the user clicks on the button, 
+  toggle between hiding and showing the dropdown content */
+function openSimpleButtonDropDown()
+{
+    document.getElementById("dropdown_button_div_simple").classList.add("show");
+}
+
+function openMethuselahsButtonDropDown()
+{
+    document.getElementById("dropdown_button_div_methuselahs").classList.add("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event)
+{
+    if (!event.target.matches('.dropbtn-buttons'))
+    {
+
+      var dropdowns = document.getElementsByClassName("dropdown-content-buttons");
+      var i;
+      for (i = 0; i < dropdowns.length; i++)
+      {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show'))
+          openDropdown.classList.remove('show');
+      }
+    }
 }
 
 // Window renderizing
@@ -300,27 +656,53 @@ window.onload = function()
 
 <body>
 
-<div id="div_intro" class="intro_class">
+<div id="div_intro" class="intro-class">
 A simple demo of Conway's Game of Life.
 </div>
 
-<div id="div_game" class="game_class"> </div>
+<div id="div_game" class="game-class">
+</div>
 
-<div id="div_buttons" class="buttons_class">
+<div id="button_dropdown_simple" class="dropdown-buttons">
+    <button onmouseenter="openSimpleButtonDropDown()" class="dropbtn">simple patterns</button>
+    <div id="dropdown_button_div_simple" class="dropdown-content-buttons">
+        <button class="nice-buttons" onclick="stillLifeState()">Still Life</button>
+        <button class="nice-buttons" onclick="oscillatorState()">Oscillators</button>
+        <button class="nice-buttons" onclick="spaceshipsState()">Spaceships</button>
+    </div>
+    <br>
+    <button onmouseenter="openMethuselahsButtonDropDown()" class="dropbtn">Methuselahs patterns</button>
+    <div id="dropdown_button_div_methuselahs" class="dropdown-content-buttons">
+        <button class="nice-buttons" onclick="rPentominoState()">The R-pentomino</button>
+        <button class="nice-buttons" onclick="diehardState()">Diehard</button>
+        <button class="nice-buttons" onclick="acornState()">Acorn</button>
+    </div>
+</div>
+
+<div id="div_buttons" class="buttons-class">
     <button id="start_button" onclick="startGame()">START</button>
     <button id="stop_button" onclick="stopGame()">STOP</button>
-    <button id="style_button" onclick="changeGridStyle()">CSS</button>
+    <button id="step_button" onclick="stepGame()">STEP</button>
     <br>
     <button onclick="randomState()">RANDOM</button>
     <button onclick="clearState()">CLEAR</button>
+    <button id="style_button" onclick="changeGridStyle()">CSS</button>
     <br>
+    <div id="div_slider" class="slider-class">
+        fast <input type="range" id="sim_period_slider" value="100" max="1000" min="10" onchange="restartGame()"> slow
+    </div>
 </div>
 
-<div id="div_credits" class="credits_class">
-<br>
-(Grid based on <a href="http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser">this StackOverflow thread</a>.)
-<br>
-(Rules are from <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">the Wikipedia article</a>.)
+<div id="div_credits" class="credits-class">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    (Grid based on <a href="http://stackoverflow.com/questions/9140101/creating-a-clickable-grid-in-a-web-browser">this StackOverflow thread</a>.)
+    <br>
+    (Rules are from <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">the Wikipedia article</a>.)
 </div>
 
 </body>
