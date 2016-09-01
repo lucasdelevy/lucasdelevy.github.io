@@ -42,7 +42,7 @@ body
     border-radius: 5vw;
     background-color: var(--dead-color);
     color: var(--dead-color);
-    border: 0.15vw solid var(--dead-color);
+    border: 0.09vw solid var(--dead-color);
 }
 .round-grid td.clicked
 {
@@ -152,16 +152,16 @@ console.log(window_width, window_height)
 var ncols;
 var nrows;
 var small_window;
-if(window_width > 450)
+if(window_width*window_height > 400000)
 {
-     ncols = window_width/20;
-     nrows = window_height/14;
-     small_window = false;
+    ncols = 100;
+    nrows = 60;
+    small_window = false;
 }
 else
 {
-    ncols = window_width/12;
-    nrows = window_height/24;
+    ncols = 60;
+    nrows = 40;
     small_window = true;
 }
 
@@ -194,14 +194,14 @@ function clickableGrid(rows, cols, callback)
 
             if(window_width*window_height > 400000)
             {
-                cell.style.width = '0.2vw';
-                cell.style.height = '0.2vw';
+                cell.style.width = '0.3vw';
+                cell.style.height = '0.3vw';
             }
             else
             {
                 console.log('small!')
-                cell.style.width = '10px';
-                cell.style.height = '10px';
+                cell.style.width = '1vw';
+                cell.style.height = '1vw';
             }
             cell.className = 'unclicked'
 

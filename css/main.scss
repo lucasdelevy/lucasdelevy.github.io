@@ -68,10 +68,10 @@ input[type=range] {
     border: 1px solid white;
     
     /*required for proper track sizing in FF*/
-    width: 20vw;
+    width: 10vw;
 }
 input[type=range]::-webkit-slider-runnable-track {
-    width: 20vw;
+    width: 10vw;
     height: 5px;
     background: #E3F5BF;
     border: none;
@@ -94,7 +94,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 input[type=range]::-moz-range-track {
-    width: 20vw;
+    width: 10vw;
     height: 5px;
     background: #ddd;
     border: none;
