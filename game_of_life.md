@@ -23,12 +23,9 @@ body
 {
     --dead-color: #FFD8D8;
     --alive-color: #FF8686;
-    --border-thick: .0001vw;
 }
 .game-class
 {
-    text-align: center;
-    float: center;
     align: center;
 }
 
@@ -36,8 +33,8 @@ body
 .round-grid
 {
     margin: 0vw auto;
-    border-collapse: collapse;
-    border-spacing: 0px;
+    border-collapse: separate;
+    border-spacing: 0.00vw;
 }
 .round-grid td
 {
@@ -45,7 +42,7 @@ body
     border-radius: 5vw;
     background-color: var(--dead-color);
     color: var(--dead-color);
-    border: var(--border-thick) solid var(--dead-color);
+    border: 0.14vw solid var(--dead-color);
 }
 .round-grid td.clicked
 {
@@ -54,17 +51,17 @@ body
 }
 
 /* Square grid */
-.square-grid {
+.square-grid
+{
     margin: 0vw auto;
     border-collapse: collapse;
-    border-spacing: 0px;
+    border-spacing: 0.08vw;
 }
 .square-grid td
 {
-    /*background-clip: padding-box;*/
-    width: 0.1vw;
-    height: 0.1vw;
-    border: var(--border-thick) solid var(--dead-color);
+    width: 0.12vw;
+    height: 0.12vw;
+    border: 0.10vw solid var(--dead-color);
 }
 .square-grid td.clicked
 {
@@ -792,14 +789,10 @@ window.onload = function()
 <div id="div_intro" class="intro-class">
 A simple demo of Conway's Game of Life.
 </div>
-
 <br>
-
 <div id="div_game" class="game-class">
 </div>
-
 <br>
-
 <div class="settings_div">
     <div id="pattern_buttons_div" class="pattern-buttons-div">
         <div id="simple_buttons_div" class="buttons-div">
