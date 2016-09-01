@@ -74,7 +74,7 @@ body
     position: relative;
     overflow: hidden;
     width: all;
-    height: 130vw;
+    height: 13vw;
 }
 .action-buttons-div
 {
