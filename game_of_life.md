@@ -42,7 +42,7 @@ body
     border-radius: 5vw;
     background-color: var(--dead-color);
     color: var(--dead-color);
-    border: 0.26vw solid var(--dead-color);
+    border: 0.15vw solid var(--dead-color);
 }
 .round-grid td.clicked
 {
@@ -59,8 +59,8 @@ body
 }
 .square-grid td
 {
-    width: 0.3vw;
-    height: 0.3vw;
+    width: 0.2vw;
+    height: 0.2vw;
     border: 0.10vw solid var(--dead-color);
 }
 .square-grid td.clicked
@@ -154,14 +154,14 @@ var nrows;
 var small_window;
 if(window_width > 450)
 {
-     ncols = window_width/15;
-     nrows = window_height/15;
+     ncols = window_width/20;
+     nrows = window_height/14;
      small_window = false;
 }
 else
 {
-    ncols = window_width/8;
-    nrows = window_height/15;
+    ncols = window_width/12;
+    nrows = window_height/24;
     small_window = true;
 }
 
@@ -182,14 +182,27 @@ var mouse_down = false;
 function clickableGrid(rows, cols, callback)
 {
     var grid = document.createElement('table');
-    grid.className = 'grid';
+    grid.className = 'square-grid';
 
     var i = 0;
-    for (var r = 0; r < rows; ++r){
+    for (var r = 0; r < rows; ++r)
+    {
         var tr = grid.appendChild(document.createElement('tr'));
         for (var c = 0; c < cols; ++c)
         {
             var cell = tr.appendChild(document.createElement('td'));
+
+            if(window_width*window_height > 400000)
+            {
+                cell.style.width = '0.2vw';
+                cell.style.height = '0.2vw';
+            }
+            else
+            {
+                console.log('small!')
+                cell.style.width = '10px';
+                cell.style.height = '10px';
+            }
             cell.className = 'unclicked'
 
             cell.addEventListener('click',(
@@ -227,6 +240,7 @@ function clickableGrid(rows, cols, callback)
                 })(cell,r,c,i),false);
         }
     }
+    
     return grid;
 }
 
