@@ -42,7 +42,7 @@ body
     border-radius: 5vw;
     background-color: var(--dead-color);
     color: var(--dead-color);
-    border: 0.14vw solid var(--dead-color);
+    border: 0.26vw solid var(--dead-color);
 }
 .round-grid td.clicked
 {
@@ -59,8 +59,8 @@ body
 }
 .square-grid td
 {
-    width: 0.12vw;
-    height: 0.12vw;
+    width: 0.3vw;
+    height: 0.3vw;
     border: 0.10vw solid var(--dead-color);
 }
 .square-grid td.clicked
@@ -74,7 +74,7 @@ body
     position: relative;
     overflow: hidden;
     width: all;
-    height: 13vw;
+    height: 40vw;
 }
 .action-buttons-div
 {
@@ -148,8 +148,22 @@ body
 var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 var window_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
-var ncols = window_width/8;
-var nrows = window_height/8;
+console.log(window_width, window_height)
+var ncols;
+var nrows;
+var small_window;
+if(window_width > 450)
+{
+     ncols = window_width/15;
+     nrows = window_height/15;
+     small_window = false;
+}
+else
+{
+    ncols = window_width/8;
+    nrows = window_height/15;
+    small_window = true;
+}
 
 var grid = clickableGrid(nrows,ncols,
     function(el,row,col,i)
