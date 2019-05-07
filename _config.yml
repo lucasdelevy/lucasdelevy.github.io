@@ -9,11 +9,11 @@
 title: levy @ osaka university (阪大)
 name: Lucas de Levy Oliveira
 email: lucasdelevy@neuron.eei.eng.osaka-u.ac.jp
-original_url: "http://lucasdelevy.com"
+original_url: "http://lucasdelevy.github.io"
 description: > # this means to ignore newlines until "baseurl:"
   Welcome to my page! It is surely not yet complete, but I'll be adding information soon enough. :-)
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://www.lucasdelevy.com" # the base hostname & protocol for your site
+url: "http://www.lucasdelevy.github.io" # the base hostname & protocol for your site
 facebook_username: lucasdelevy
 github_username:  lucasdelevy
 linkedin_username: lucasdelevy
