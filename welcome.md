@@ -34,7 +34,8 @@ img.welcome {
 <img class="welcome" src="/images/osaka-aquarium.jpg">
 
 <p>
-ようこそ！　Hello and welcome to my page! :-)
+ようこそ！
+<br>Hello and welcome to my page! :-)
 <br>
 I’ll take this space to talk a little more <b><a href="/who-are-you">about me</a></b> and the <b><a href="/what-have-you-done">projects</a></b> I have been working on.　Enjoy!
 <br>

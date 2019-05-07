@@ -19,6 +19,9 @@
     float: left;
 
     &,
+    &:hover {
+        color: #7DA234;
+    }
     &:visited {
         color: $grey-color-dark;
     }
@@ -35,6 +38,14 @@
     .page-link {
         color: $text-color;
         line-height: $base-line-height;
+
+        &:visited {
+            color: darken($brand-color, 15%);
+        }
+
+        &:hover {
+            color: #7DA234;
+        }
 
         // Gaps between nav items, but not on the last one
         &:not(:last-child) {
