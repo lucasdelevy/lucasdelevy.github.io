@@ -31,13 +31,13 @@ img.welcome {
 }
 </style>
 
-<img class="welcome" src="/images/osaka-aquarium.jpg">
+<!-- <img class="welcome" src="/images/osaka-aquarium.jpg"> -->
 
 <p>
-HELLO
-
+<h1>HELLO</h1>
+<br><br>
 This page has changed. Please visit: lucasdelevy.herokuapp.com for something a bit better.
-
+<br><br>
 Thank you.
 </p>
 
