@@ -40,6 +40,6 @@ Thank you.
 </p>
 
 <!-- YouTube responsive video code taken from: http://avexdesigns.com/responsive-youtube-embed/ -->
-<!--<div class="video-container">
-         <iframe src="http://www.youtube.com/embed/g0M2KTbc_a8" frameborder="0" width="560" height="315"></iframe>
-</div>
+<!--<div class="video-container"> -->
+         <!--<iframe src="http://www.youtube.com/embed/g0M2KTbc_a8" frameborder="0" width="560" height="315"></iframe>-->
+<!--</div>-->
