@@ -34,13 +34,11 @@ img.welcome {
 <img class="welcome" src="/images/osaka-aquarium.jpg">
 
 <p>
-ようこそ！
-<br>Hello and welcome to my page! :-)
-<br>
-I’ll take this space to talk a little more <b><a href="/who-are-you">about me</a></b> and the <b><a href="/what-have-you-done">projects</a></b> I have been working on.　Enjoy!
-<br>
-In the meantime, how about watching a cockroach being controlled remotely?
-It is a thing.
+HELLO
+
+This page has changed. Please visit: lucasdelevy.herokuapp.com for something a bit better.
+
+Thank you.
 </p>
 
 <!-- YouTube responsive video code taken from: http://avexdesigns.com/responsive-youtube-embed/ -->
