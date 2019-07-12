@@ -1,6 +1,6 @@
 ---
 layout: page
-title: welcome!
+title: HELLO
 permalink: /
 ---
 
@@ -33,15 +33,13 @@ img.welcome {
 
 <!-- <img class="welcome" src="/images/osaka-aquarium.jpg"> -->
 
-<p>
-<h1>HELLO</h1>
-<br><br>
+<br>
 This page has changed. Please visit: lucasdelevy.herokuapp.com for something a bit better.
 <br><br>
 Thank you.
 </p>
 
 <!-- YouTube responsive video code taken from: http://avexdesigns.com/responsive-youtube-embed/ -->
-<div class="video-container">
+<!--<div class="video-container">
          <iframe src="http://www.youtube.com/embed/g0M2KTbc_a8" frameborder="0" width="560" height="315"></iframe>
 </div>
